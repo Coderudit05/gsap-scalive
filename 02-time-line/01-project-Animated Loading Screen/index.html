@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NOVA — Animated Loader</title>
+
+  <!-- Google Fonts: Cormorant for display, DM Mono for UI text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+
+  <!-- ═══════════════════════════════════════════════════
+       CSS
+       ═══════════════════════════════════════════════════ -->
+  <style>
+
+    /* ─── 1. CSS VARIABLES ────────────────────────────────────────────
+       Define your entire color palette and spacing system here.
+       Using variables means you can retheme the whole site by
+       changing just this one block.
+    ──────────────────────────────────────────────────────────────── */
+    :root {
+      --bg:           #07070d;         /* deep near-black background      */
+      --surface:      #0f0f1a;         /* slightly lighter surface         */
+      --border:       #1c1c2e;         /* subtle borders                   */
+      --text-primary: #ede8df;         /* warm off-white                   */
+      --text-muted:   #3a3a52;         /* very muted text                  */
+      --accent:       #e8935a;         /* warm amber/orange accent         */
+      --accent-2:     #d45a5a;         /* red for gradient end             */
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-mono:    'DM Mono', 'Courier New', monospace;
+    }
+
+
+    /* ─── 2. RESET & BASE ────────────────────────────────────────────
+       A minimal reset so browsers behave consistently.
+       box-sizing: border-box means padding is included in width.
+    ──────────────────────────────────────────────────────────────── */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: var(--bg);
+      overflow: hidden;   /* prevent scrollbars during animation */
+    }
+
+
+    /* ─── 3. LOADER OVERLAY ──────────────────────────────────────────
+       The loader sits on top of everything using position: fixed.
+       z-index: 100 guarantees it's above the main content.
+       We'll animate its opacity to 0 and then remove it.
+    ──────────────────────────────────────────────────────────────── */
+    #loader {
+      position: fixed;
+      inset: 0;                    /* shorthand for top/right/bottom/left: 0 */
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+
+      /* A subtle radial glow behind the logo — purely decorative */
+      background-image: radial-gradient(
+        ellipse 60% 40% at 50% 50%,
+        rgba(232, 147, 90, 0.04) 0%,
+        transparent 70%
+      );
+    }
+
+
+    /* ─── 4. LOGO TEXT + LETTERS ─────────────────────────────────────
+       Each character of "NOVA." is wrapped in a <span class="letter">.
+       GSAP will select all of them with ".letter" and stagger them.
+       We set opacity: 0 here — GSAP will animate FROM 0 TO 1.
+    ──────────────────────────────────────────────────────────────── */
+    #logo-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 1px;
+      margin-bottom: 20px;
+    }
+
+    .letter {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 10vw, 80px);  /* responsive font size        */
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: 4px;
+      line-height: 1;
+
+      /*
+        IMPORTANT: opacity starts at 0.
+        GSAP's gsap.from({ opacity: 0 }) will animate FROM 0 TO this.
+        But since we already set it to 0 in CSS, we set it to 1 here
+        and let GSAP handle the starting state via gsap.set() or gsap.from().
+        See the JS for how this is handled.
+      */
+      opacity: 0;
+      display: inline-block;  /* needed for transform (y) to work on spans */
+    }
+
+    /* The dot gets the accent color */
+    .letter.accent {
+      color: var(--accent);
+    }
+
+
+    /* ─── 5. TAGLINE ─────────────────────────────────────────────────
+       Small uppercase label below the logo.
+       Also starts invisible — GSAP fades it in after letters complete.
+    ──────────────────────────────────────────────────────────────── */
+    #tagline {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 300;
+      color: var(--text-muted);
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      margin-bottom: 60px;
+      opacity: 0;
+    }
+
+
+    /* ─── 6. PROGRESS BAR SYSTEM ─────────────────────────────────────
+       Three elements:
+         #progress-wrap  — the outer track (grey background)
+         #progress-bar   — the inner fill (animated from 0% to 100%)
+         #progress-pct   — the percentage counter text
+    ──────────────────────────────────────────────────────────────── */
+    #progress-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      opacity: 0;   /* GSAP fades this whole block in at once */
+    }
+
+    #progress-wrap {
+      width: clamp(200px, 30vw, 300px);
+      height: 1px;               /* ultra-thin — elegant                  */
+      background: var(--border);
+      position: relative;
+      overflow: visible;
+    }
+
+    #progress-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0%;                 /* starts at 0 — GSAP animates to 100%   */
+
+      /* Gradient fill on the bar */
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+
+      /* The glowing dot at the leading edge of the bar */
+      /* We use ::after pseudo-element for this */
+    }
+
+    /* Glowing cursor at the tip of the progress bar */
+    #progress-bar::after {
+      content: '';
+      position: absolute;
+      right: -1px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent), 0 0 16px rgba(232, 147, 90, 0.4);
+    }
+
+    #progress-pct {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 300;
+      color: var(--text-muted);
+      letter-spacing: 3px;
+    }
+
+
+    /* ─── 7. DECORATIVE CORNER MARKS ─────────────────────────────────
+       Pure aesthetic — four small L-shaped brackets in the corners.
+       These are common in editorial / high-end UI design.
+    ──────────────────────────────────────────────────────────────── */
+    .corner {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      opacity: 0;   /* GSAP fades these in */
+    }
+    .corner::before,
+    .corner::after {
+      content: '';
+      position: absolute;
+      background: var(--text-muted);
+    }
+    .corner::before { width: 1px; height: 100%; }
+    .corner::after  { width: 100%; height: 1px; }
+
+    /* Position each corner */
+    .corner.tl { top: 24px;    left: 24px;    }
+    .corner.tr { top: 24px;    right: 24px;   transform: scaleX(-1); }
+    .corner.bl { bottom: 24px; left: 24px;    transform: scaleY(-1); }
+    .corner.br { bottom: 24px; right: 24px;   transform: scale(-1);  }
+
+
+    /* ─── 8. MAIN CONTENT (hidden until loader ends) ─────────────────
+       This is the actual website content that appears after loading.
+       It starts with opacity: 0 and visibility: hidden so it's
+       completely invisible and doesn't interfere.
+       GSAP will animate it in after the loader fades out.
+    ──────────────────────────────────────────────────────────────── */
+    #main-content {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;   /* hidden prevents tab-focus on invisible elements */
+      background: var(--bg);
+      background-image: radial-gradient(
+        ellipse 80% 60% at 50% 40%,
+        rgba(232, 147, 90, 0.06) 0%,
+        transparent 70%
+      );
+    }
+
+    /* Eyebrow label above the hero title */
+    .content-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .content-title {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 8vw, 72px);
+      font-weight: 300;
+      color: var(--text-primary);
+      text-align: center;
+      line-height: 1.15;
+      margin-bottom: 24px;
+      max-width: 700px;
+    }
+
+    .content-sub {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--text-muted);
+      letter-spacing: 3px;
+      margin-bottom: 52px;
+    }
+
+    .content-btn {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: transparent;
+      border: 1px solid rgba(232, 147, 90, 0.3);
+      padding: 16px 40px;
+      cursor: pointer;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .content-btn:hover {
+      border-color: var(--accent);
+      background: rgba(232, 147, 90, 0.06);
+    }
+
+    /* Replay button — fixed to bottom right */
+    #replay-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: none;
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      cursor: pointer;
+      z-index: 200;
+      transition: color 0.3s, border-color 0.3s;
+    }
+
+    #replay-btn:hover {
+      color: var(--accent);
+      border-color: rgba(232, 147, 90, 0.4);
+    }
+
+  </style>
+</head>
+<body>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       HTML STRUCTURE
+       ═══════════════════════════════════════════════════ -->
+
+  <!--
+    LOADER OVERLAY
+    This sits on top of everything (z-index: 100).
+    GSAP will fade this to opacity 0 after loading completes.
+  -->
+  <div id="loader">
+
+    <!-- Decorative corner brackets -->
+    <div class="corner tl"></div>
+    <div class="corner tr"></div>
+    <div class="corner bl"></div>
+    <div class="corner br"></div>
+
+    <!--
+      LOGO TEXT
+      Each character is a separate <span class="letter">.
+      This is what allows GSAP's stagger to work — it animates
+      each span individually, offset by a delay.
+    -->
+    <div id="logo-wrap" aria-label="NOVA">
+      <span class="letter">N</span>
+      <span class="letter">O</span>
+      <span class="letter">V</span>
+      <span class="letter">A</span>
+      <span class="letter accent">.</span>
+    </div>
+
+    <!-- Tagline fades in after letters complete -->
+    <div id="tagline">crafted with intention</div>
+
+    <!-- Progress bar area (fades in as a unit) -->
+    <div id="progress-area">
+      <div id="progress-wrap">
+        <div id="progress-bar"></div>
+      </div>
+      <div id="progress-pct">0%</div>
+    </div>
+
+  </div>
+
+
+  <!--
+    MAIN CONTENT
+    Hidden (opacity: 0, visibility: hidden) until the loader exits.
+    GSAP will fade this in after the loader fades out.
+  -->
+  <main id="main-content">
+    <div class="content-eyebrow">Est. 2024</div>
+    <h1 class="content-title">Where ideas become<br/>experiences.</h1>
+    <p class="content-sub">Design · Motion · Code</p>
+    <button class="content-btn">Enter the Studio</button>
+  </main>
+
+  <!-- Replay button -->
+  <button id="replay-btn">↺ Replay</button>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       GSAP CDN — load the library before our script
+       ═══════════════════════════════════════════════════ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       JAVASCRIPT — GSAP ANIMATION LOGIC
+       ═══════════════════════════════════════════════════ -->
+  <script>
+
+    /*
+     * ─── GRAB DOM REFERENCES ─────────────────────────────────────────
+     * Cache these so we don't query the DOM repeatedly.
+     */
+    const loader      = document.getElementById('loader');
+    const mainContent = document.getElementById('main-content');
+    const progressBar = document.getElementById('progress-bar');
+    const progressPct = document.getElementById('progress-pct');
+
+
+    /*
+     * ─── runLoader() ──────────────────────────────────────────────────
+     * The main function. Resets all states and plays the full sequence.
+     * Wrapped in a function so the Replay button can call it again.
+     */
+    function runLoader() {
+
+      /*
+       * STEP 0 — RESET ALL STATES
+       * ─────────────────────────
+       * Before playing the animation, reset everything to its starting
+       * state. gsap.set() is an instant, no-duration tween — it's the
+       * GSAP way to "teleport" something to a value without animating.
+       *
+       * This is what makes Replay work: call reset → play again.
+       */
+      gsap.set(loader,      { opacity: 1, display: 'flex' });
+      gsap.set(mainContent, { opacity: 0, visibility: 'hidden' });
+      gsap.set(progressBar, { width: '0%' });
+
+      /*
+       * gsap.set on multiple elements at once using an array.
+       * Resets all the animated elements to invisible.
+       */
+      gsap.set('.letter',       { opacity: 0, y: 50 });
+      gsap.set('.corner',       { opacity: 0 });
+      gsap.set('#tagline',      { opacity: 0, y: 12 });
+      gsap.set('#progress-area',{ opacity: 0 });
+
+      // Reset the percentage counter object
+      counter.val = 0;
+      progressPct.textContent = '0%';
+
+
+      /*
+       * STEP 1 — CREATE THE TIMELINE
+       * ─────────────────────────────────────────────────────────────
+       * gsap.timeline() creates a container for all tweens.
+       * Tweens added with .from() / .to() / .fromTo() run sequentially
+       * — each starts when the previous one ends, unless you use a
+       * position parameter to overlap or sync them.
+       *
+       * defaults: {} sets properties shared by ALL tweens in this timeline.
+       * We set ease here so we don't repeat it every time.
+       */
+      const tl = gsap.timeline({
+        defaults: {
+          ease: 'power3.out'
+        }
+      });
+
+
+      /*
+       * STEP 1A — CORNER BRACKETS FADE IN
+       * ──────────────────────────────────
+       * tl.to() animates FROM current state TO the values provided.
+       * .corner elements are currently opacity: 0 (set above).
+       * stagger: { amount: 0.3 } spreads 0.3s across all 4 corners.
+       */
+      tl.to('.corner', {
+        opacity: 1,
+        duration: 0.6,
+        stagger: { amount: 0.3 }
+      });
+
+
+      /*
+       * STEP 2 — LETTERS STAGGER IN
+       * ─────────────────────────────────────────────────────────────
+       * gsap.from() animates FROM the provided values TO the element's
+       * natural/current state.
+       *
+       * So: from { opacity: 0, y: 50 } TO { opacity: 1, y: 0 }
+       *
+       * stagger: 0.07 means each .letter starts 70ms after the previous.
+       * With 5 letters: N→0ms, O→70ms, V→140ms, A→210ms, .→280ms
+       *
+       * "-=0.2" is the POSITION PARAMETER — it means:
+       *   "start this tween 0.2s before the previous tween ends"
+       * This creates overlap and prevents the animation from feeling slow.
+       */
+      tl.from('.letter', {
+        opacity: 0,
+        y: 50,
+        duration: 0.8,
+        stagger: 0.07             // ← key stagger setting
+      }, '-=0.2');                // ← overlap with previous tween by 0.2s
+
+
+      /*
+       * STEP 3 — TAGLINE FADES IN
+       * ─────────────────────────────────────────────────────────────
+       * A short fade-in with a small vertical slide (y: 12 → 0).
+       * "-=0.3" overlaps it with the end of the letter animation.
+       */
+      tl.to('#tagline', {
+        opacity: 1,
+        y: 0,
+        duration: 0.6
+      }, '-=0.3');
+
+
+      /*
+       * STEP 4A — PROGRESS AREA FADES IN
+       * ──────────────────────────────────
+       * "+=0.1" means: wait 0.1 seconds AFTER the previous tween ends.
+       * The whole progress-area (track + percentage) fades in together.
+       */
+      tl.to('#progress-area', {
+        opacity: 1,
+        duration: 0.4
+      }, '+=0.1');
+
+
+      /*
+       * STEP 4B — PROGRESS BAR FILLS + COUNTER COUNTS UP
+       * ─────────────────────────────────────────────────────────────
+       * Two tweens run at the SAME TIME using "<" as position parameter.
+       * "<" means: "start at the same time as the previous tween's start."
+       *
+       * Tween 1: Animate #progress-bar width from 0% → 100%
+       *
+       * Tween 2: Animate a plain JavaScript counter object { val: 0 }
+       *   to { val: 100 } over the same duration.
+       *   onUpdate fires every frame — we read counter.val and
+       *   push it into the DOM as text.
+       *
+       * This is how you animate non-CSS values with GSAP:
+       * create a JS object, tween its properties, read them in onUpdate.
+       */
+      tl.to('#progress-bar', {
+        width: '100%',
+        duration: 2.2,
+        ease: 'power1.inOut'      // linear feel for a progress bar
+      });
+
+      // Runs simultaneously with the bar — position "<" syncs them
+      tl.to(counter, {
+        val: 100,
+        duration: 2.2,
+        ease: 'power1.inOut',
+        onUpdate: function() {
+          // Math.round() prevents "47.000000001%" floating-point glitch
+          progressPct.textContent = Math.round(counter.val) + '%';
+        }
+      }, '<');                    // ← "<" means same start time as bar
+
+
+      /*
+       * STEP 5 — LOADER FADES OUT
+       * ─────────────────────────────────────────────────────────────
+       * After the progress bar completes, wait 0.3s then fade out
+       * the entire loader overlay.
+       *
+       * ease: "power2.in" — accelerates INTO the fade (punchy exit).
+       * onComplete: display: 'none' removes it from the layout entirely,
+       * which also frees up any pointer-events it was blocking.
+       */
+      tl.to(loader, {
+        opacity: 0,
+        duration: 0.7,
+        ease: 'power2.in',
+        onComplete: () => {
+          loader.style.display = 'none';
+        }
+      }, '+=0.3');
+
+
+      /*
+       * STEP 6 — MAIN CONTENT FADES IN
+       * ─────────────────────────────────────────────────────────────
+       * Chained directly after the loader fade — no position param
+       * needed here (default is to start after previous ends).
+       *
+       * We also set visibility: 'visible' at the start so the element
+       * can be seen during the opacity animation (visibility: hidden
+       * would make opacity animation invisible).
+       *
+       * ease: "power2.out" — decelerates into view (soft landing).
+       */
+      tl.to(mainContent, {
+        opacity: 1,
+        visibility: 'visible',
+        duration: 0.9,
+        ease: 'power2.out'
+      });
+
+    } // end runLoader()
+
+
+    /*
+     * ─── COUNTER OBJECT ───────────────────────────────────────────────
+     * A plain JS object used as GSAP's tween target for the number.
+     * Declared outside runLoader() so it persists across replays.
+     */
+    const counter = { val: 0 };
+
+
+    /*
+     * ─── REPLAY BUTTON ────────────────────────────────────────────────
+     * Clicking the replay button calls runLoader() again.
+     * Because runLoader() resets all states at the top with gsap.set(),
+     * it always starts clean regardless of where the animation was.
+     */
+    document.getElementById('replay-btn').addEventListener('click', runLoader);
+
+
+    /*
+     * ─── INITIAL PLAY ─────────────────────────────────────────────────
+     * Run the loader once automatically when the page loads.
+     */
+    runLoader();
+
+  </script>
+</body>
+</html>

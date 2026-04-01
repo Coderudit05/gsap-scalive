@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Keep page full-height and use a visible background */
+html,
+body {
+    height: 100%;
+    background-color: gray;
+}
+
+/* Shared style for all timeline demo boxes */
+.box {
+    height: 100px;
+    width: 100px;
+    background-color: violet;
+    margin: 10px;
+}

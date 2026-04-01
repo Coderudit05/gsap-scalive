@@ -7,6 +7,7 @@ Current coverage in this notebook:
 2. Intro to `gsap.from()` concept
 3. Repeating and reversing animations (`repeat`, `yoyo`)
 4. Animating multiple elements with `stagger`
+5. Timeline basics with custom sequencing
 
 ---
 
@@ -40,6 +41,11 @@ Think of them like this:
     style.css
     script.js
   example2/
+    index.html
+    style.css
+    script.js
+02-time-line/
+  example1/
     index.html
     style.css
     script.js
@@ -291,10 +297,50 @@ Covered till now:
 3. Repeat/yoyo behavior
 4. Stagger-based sequencing
 5. `to()` and `from()` concepts
+6. Basic timeline sequence control
 
 Next (later topics, not included yet):
-1. Timeline basics
-2. Advanced easing exploration
-3. ScrollTrigger fundamentals
-4. fromTo practical patterns
-5. Callbacks with mini projects
+1. Advanced easing exploration
+2. ScrollTrigger fundamentals
+3. fromTo practical patterns
+4. Callbacks with mini projects
+
+---
+
+## 11) Lesson 3 - Timeline Basics (`02-time-line/example1`)
+
+### 11.1 Why Timeline When We Already Have Stagger?
+
+`stagger` is best when all elements follow the same pattern with a fixed offset.
+
+`timeline` is best when you want full manual sequence control, for example:
+1. Animate box 1, 3, 5 first
+2. Then animate box 2, 4, 6
+
+That custom ordering is hard to manage with plain stagger, but very easy with timeline.
+
+### 11.2 Timeline Code (Current Example)
+
+```js
+const tl = gsap.timeline();
+
+tl.to("#box1", { x: 500, duration: 2 });
+tl.to("#box3", { x: 500, duration: 2 });
+tl.to("#box5", { x: 500, duration: 2 });
+tl.to("#box2", { x: 500, duration: 2 });
+tl.to("#box4", { x: 500, duration: 2 });
+tl.to("#box6", { x: 500, duration: 2 });
+```
+
+### 11.3 Step-by-Step Behavior
+
+1. A timeline instance is created using `gsap.timeline()`.
+2. Each `tl.to()` is added in order.
+3. Timeline plays sequentially by default.
+4. Box order follows exactly what we wrote: `1 -> 3 -> 5 -> 2 -> 4 -> 6`.
+
+### 11.4 Key Takeaway
+
+Use `stagger` for quick grouped offsets.
+
+Use `timeline` when sequence order and choreography matter.
