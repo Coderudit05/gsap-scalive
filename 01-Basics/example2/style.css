@@ -1,0 +1,18 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    background-color: gray;
+}
+
+.box {
+    height: 100px;
+    width: 100px;
+    background-color: violet;
+    margin: 10px;
+}
