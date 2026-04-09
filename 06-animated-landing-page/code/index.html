@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div id="cursor" class="cursor-box">
+      <div class="cursor-inner-img">
+        <img src="./assets/music-artist-img.avif" alt="image not found" />
+      </div>
+    </div>
+    <!-- Video Background -->
+    <div class="video-container">
+      <video autoplay muted loop>
+        <source src="./assets/hero-section-video.mp4" />
+      </video>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay"></div>
+    <!-- Main content -->
+
+    <section class="main">
+      <!-- Navbar -->
+      <nav class="navbar">
+        <h2 class="logo">Festava Live</h2>
+        <ul id="nav-links">
+          <li>Home</li>
+          <li>About</li>
+          <li>Artist</li>
+          <li>Schedule</li>
+          <li>Pricing</li>
+          <li>Contact</li>
+        </ul>
+        <button id="nav-btn" class="btn">Buy Ticket</button>
+      </nav>
+
+      <!-- Hero Section -->
+      <div class="hero">
+        <p class="gradient">FESTAVA LIVE PRESENTS</p>
+        <h1 id="heading">Night Live 2026</h1>
+        <button class="hero-btn">
+          Let's begin <i class="fa-solid fa-angle-right"></i>
+        </button>
+
+        <div class="status">
+          <p id="date">
+            <i class="fa-solid fa-stopwatch"></i> 10-12<sup>th</sup>,Dec 2026
+          </p>
+          <p id="location">
+            <i class="fa-solid fa-location-dot"></i> National Center, United
+            States
+          </p>
+          <p class="icons-para" id="hero-icons">
+            Share:
+            <span
+              ><i class="fa-brands fa-facebook"></i
+              ><i class="fa-brands fa-instagram"></i
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="about">
+      <!-- Background Image -->
+      <div class="bg-img-box">
+        <img src="./assets/about-img.jpg" alt="" />
+      </div>
+
+      <!-- Left Content -->
+      <div class="left">
+        <h2>About Festava 2022</h2>
+        <p>
+          Festava Live is free CSS template provided by TemplateMo website. This
+          layout is built on Bootstrap v5.2.2 CSS library.
+        </p>
+
+        <h3>Once in Lifetime Experience</h3>
+        <p>You are not allowed to redistribute the template ZIP file.</p>
+
+        <h3>Whole Night Party</h3>
+        <p>Please tell your friends about our website. Thank you.</p>
+      </div>
+
+      <!-- Right Image -->
+      <div class="right">
+        <img id="about-img" src="./assets/about-img-2.jpg" alt="" />
+
+        <!-- Floating Card -->
+        <div class="about-card">
+          <div class="icon">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <div>
+            <h3>a happy moment</h3>
+            <p>your amazing festival experience with us</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="artist-section" class="artists">
+      <h2 class="section-title">Meet Artists</h2>
+
+      <div class="artists-wrapper">
+        <!-- Left Big Image -->
+        <!-- Left Big Image -->
+        <div class="left-artist">
+          <img src="./assets/artist-1.jpg" alt="" />
+          <div class="artist-shine"></div>
+          <div class="artist-info">
+            <span class="artist-tag">Headliner · Night 1</span>
+            <h3>Artist One</h3>
+            <p>Live Performance · 9:00 PM</p>
+          </div>
+        </div>
+        <!-- Right Side -->
+        <div class="right-artists">
+          <div class="artist">
+            <img src="./assets/artist-2.jpg" alt="" />
+            <div class="artist-shine"></div>
+            <div class="artist-info">
+              <span class="artist-tag">Featured · Night 2</span>
+              <h3>Artist Two</h3>
+              <p>Live Performance · 7:30 PM</p>
+            </div>
+          </div>
+
+          <div class="artist">
+            <img src="./assets/artist-3.jpg" alt="" />
+            <div class="artist-shine"></div>
+            <div class="artist-info">
+              <span class="artist-tag">Special Guest · Night 3</span>
+              <h3>Artist Three</h3>
+              <p>Live Performance · 10:00 PM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="plans-section" class="plans">
+      <h2>Plans, you' love</h2>
+
+      <div class="plans-wrapper">
+        <div id="left-plan" class="left plan-card">
+          <div class="offer-badge">
+            <p>Save up to</p>
+            <h3>50%</h3>
+          </div>
+
+          <div class="plan-head">
+            <h3>Early Bird <span>$120</span></h3>
+            <p>Including good things:</p>
+          </div>
+
+          <ul class="plan-points">
+            <li>platform for potential customers</li>
+            <li>high-quality sound</li>
+            <li>digital experience</li>
+            <li>standard content</li>
+          </ul>
+
+          <a href="#" class="plan-link"
+            >Buy Ticket <i class="fa-solid fa-angle-right"></i
+          ></a>
+        </div>
+
+        <div id="right-plan" class="right plan-card">
+          <div class="plan-head">
+            <h3>Standard <span>$240</span></h3>
+            <p>What makes a premium festava?</p>
+          </div>
+
+          <ul class="plan-points">
+            <li>platform for potential customers</li>
+            <li>high-quality sound</li>
+            <li>digital experience</li>
+            <li>premium content</li>
+            <li>live chat support</li>
+          </ul>
+
+          <a href="#" class="plan-link"
+            >Buy Ticket <i class="fa-solid fa-angle-right"></i
+          ></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section">
+      <!-- Part 1: Big Text (scrolls normally) -->
+      <div class="gallery-intro">
+        <div class="intro-top">
+          <span class="intro-tag">Visual Journey</span>
+          <span class="intro-line"></span>
+        </div>
+        <h2 class="intro-heading">
+          Every night tells<br />
+          <em>a different story.</em>
+        </h2>
+        <p class="intro-sub">
+          Scroll to experience the moments that define Festava Live — captured
+          raw, lived fully.
+        </p>
+        <div class="intro-scroll-hint">
+          <span></span>
+          <p>scroll</p>
+        </div>
+      </div>
+
+      <!-- Horizontal Gallery with ScrollTrigger and Pin we are doing animating it -->
+
+      <div class="gallery-wrapper">
+        <div id="gallery-img-wrapper" class="gallery-img-wrapper">
+          <img
+            src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&q=80"
+            alt=""
+          />
+          <img
+            src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=800&q=80"
+            alt=""
+          />
+          <img
+            src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=800&q=80"
+            alt=""
+          />
+          <img
+            src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&q=80"
+            alt=""
+          />
+          <img
+            src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=800&q=80"
+            alt=""
+          />
+          <img
+            src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=800&q=80"
+            alt=""
+          />
+          <img
+            src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&q=80"
+            alt=""
+          />
+          <img
+            src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=800&q=80"
+            alt=""
+          />
+          <img
+            src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=800&q=80"
+            alt=""
+          />
+        </div>
+      </div>
+    </section>
+
+    <section id="animation-text-section" class="animation-text-section">
+      <div id="blob">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="256"
+          height="256"
+          fill="#ffd700"
+        >
+          <path
+            d="M 128 0 C 147.68 0 164.04 14.213 167.377 32.934 C 182.974 22.055 204.594 23.574 218.51 37.49 C 232.426 51.406 233.944 73.025 223.066 88.622 C 241.787 91.96 256 108.32 256 128 C 256 147.68 241.787 164.04 223.065 167.377 C 233.944 182.974 232.426 204.594 218.51 218.51 C 204.594 232.426 182.974 233.944 167.377 223.065 C 164.04 241.787 147.68 256 128 256 C 108.32 256 91.959 241.787 88.622 223.065 C 73.025 233.944 51.406 232.426 37.49 218.51 C 23.574 204.594 22.055 182.974 32.934 167.377 C 14.213 164.04 0 147.68 0 128 C 0 108.32 14.213 91.96 32.934 88.622 C 22.056 73.025 23.574 51.406 37.49 37.49 C 51.406 23.574 73.025 22.055 88.622 32.934 C 91.96 14.213 108.32 0 128 0 Z"
+            fill="rgb(84, 84, 84)"
+          ></path>
+        </svg>
+      </div>
+      <div class="anim-text-wrapper">
+        <!-- Small text — left side -->
+        <p class="anim-small-text" id="anim-small">music is the</p>
+
+        <!-- Big text — center/full width -->
+        <h2 class="anim-big-text" id="anim-big">LANGUAGE OF THE SOUL</h2>
+      </div>
+    </section>
+
+    <footer class="footer" id="footer">
+      <!-- Footer Logo Cursor Animation element -->
+      <div id="footer-logo-img">
+        <img
+          src="https://images.unsplash.com/photo-1571310100246-e0676f359b42?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8c2luZ2VyfGVufDB8fDB8fHww"
+          alt=""
+        />
+      </div>
+      <!-- Top Part -->
+      <div class="footer-top">
+        <!-- Big brand text -->
+        <div class="footer-brand">
+          <h2 class="footer-logo" id="footer-logo">FESTAVA</h2>
+          <p class="footer-tagline">Where music meets the soul.</p>
+        </div>
+
+        <!-- Vertical divider -->
+        <div class="footer-divider"></div>
+
+        <!-- Nav Links — vertical list -->
+        <nav class="footer-nav">
+          <span class="footer-nav-label">Navigate</span>
+          <ul>
+            <li class="footer-nav-item">Home</li>
+            <li class="footer-nav-item">About</li>
+            <li class="footer-nav-item">Artists</li>
+            <li class="footer-nav-item">Schedule</li>
+            <li class="footer-nav-item">Pricing</li>
+          </ul>
+        </nav>
+
+        <!-- Newsletter -->
+        <div class="footer-newsletter">
+          <span class="footer-nav-label">Stay Updated</span>
+          <div class="newsletter-input-wrap">
+            <input
+              type="email"
+              placeholder="your@email.com"
+              class="newsletter-input"
+            />
+            <button class="newsletter-btn">
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+          <p class="newsletter-note">No spam. Just good music news.</p>
+        </div>
+      </div>
+
+      <!-- Bottom Part -->
+      <div class="footer-bottom">
+        <!-- Social Icons -->
+        <div class="footer-socials">
+          <a href="#" class="social-icon"
+            ><i class="fa-brands fa-instagram"></i
+          ></a>
+          <a href="#" class="social-icon"
+            ><i class="fa-brands fa-facebook"></i
+          ></a>
+          <a href="#" class="social-icon"
+            ><i class="fa-brands fa-linkedin-in"></i
+          ></a>
+          <a href="#" class="social-icon"
+            ><i class="fa-brands fa-youtube"></i
+          ></a>
+        </div>
+
+        <!-- Center — event info -->
+        <div class="footer-event-info">
+          <span><i class="fa-solid fa-stopwatch"></i> 10–12 Dec 2026</span>
+          <span class="footer-dot">·</span>
+          <span
+            ><i class="fa-solid fa-location-dot"></i> National Center, US</span
+          >
+        </div>
+
+        <!-- Copyright -->
+        <p class="footer-copy">© 2026 Festava Live. All rights reserved.</p>
+      </div>
+
+      <!-- Giant background text -->
+      <div class="footer-ghost-text">LIVE</div>
+    </footer>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
+      integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"
+      integrity="sha512-P2IDYZfqSwjcSjX0BKeNhwRUH8zRPGlgcWl5n6gBLzdi4Y5/0O4zaXrtO4K9TZK6Hn1BenYpKowuCavNandERg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="script.js"></script>
+  </body>
+</html>

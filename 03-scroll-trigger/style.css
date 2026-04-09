@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Keep page full-height and use a visible background */
+html,
+body {
+    height: 100%;
+    background-color: gray;
+}
+
+.page {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page:nth-child(1) {
+    background-color: aquamarine;
+}
+
+.page:nth-child(2) {
+    background-color: rgb(100, 237, 36);
+}
+
+.page:nth-child(3) {
+    background-color: rgb(127, 204, 255);
+}
+
+.page:nth-child(4) {
+    background-color: rgb(186, 98, 227);
+}
+
+.page .box {
+    height: 200px;
+    width: 200px;
+    background-color: red;
+}

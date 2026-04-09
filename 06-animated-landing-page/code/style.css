@@ -1,0 +1,1115 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+.cursor-box {
+    height: 40px;
+    width: 40px;
+    background-color: #cb4f00;
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+
+}
+
+.cursor-box .cursor-inner-img {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cursor-box.show-img .cursor-inner-img {
+    opacity: 1;
+}
+
+.cursor-box .cursor-inner-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.video-container {
+    /* position: fixed; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    overflow: hidden;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 🌑 Dark Overlay (important for readability) */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 30, 0.6);
+    z-index: -1;
+}
+
+/* 📦 Content Layer */
+.main {
+    position: relative;
+    z-index: 1;
+    color: white;
+}
+
+/* 🔝 Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    padding: 0px 60px;
+}
+
+.navbar ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.navbar ul li {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.navbar ul li:hover {
+    color: orange;
+}
+
+.navbar ul li::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: orange;
+    transition: width 0.3s ease;
+}
+
+.navbar ul li:hover::after {
+    width: 100%;
+}
+
+.btn {
+    background: orange;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: darkorange;
+}
+
+/* 🏷️ Hero Section */
+
+.hero {
+    min-height: calc(100vh - 70px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    text-align: center;
+    position: relative;
+}
+
+
+/* https://gradient.page/ui-gradients/monte-carlo */
+/* I have used this from this website */
+.gradient {
+    background: #CC95C0;
+    background: linear-gradient(to right, #CC95C0, #DBD4B4, #7AA1D2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+
+.hero h1 {
+    font-size: 6vw;
+    font-weight: bold;
+    /* background-color: yellowgreen; */
+    overflow: hidden;
+}
+
+#heading span {
+    display: inline-block;
+}
+
+
+.hero-btn {
+    background: orange;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.hero .status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 1000px;
+    font-size: 20px;
+    margin-top: 80px;
+    position: absolute;
+    bottom: 60px;
+
+}
+
+#hero-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.hero .icons-para {
+    font-size: 16px;
+}
+
+#hero-icons span {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#hero-icons span i {
+    font-size: 24px;
+    color: orange;
+    cursor: pointer;
+}
+
+.hero #date i,
+.hero #location i {
+    color: orange;
+}
+
+
+/* About Section start from here */
+
+/* 🔥 About Section */
+.about {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 60px;
+    gap: 40px;
+    color: white;
+}
+
+/* 🌄 Background Image */
+.bg-img-box {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+}
+
+.bg-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 🌑 Overlay for about section */
+.about::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* iska matlab hota hai ki ye element apne parent ke andar pura space occupy karega */
+    /* background: rgba(255, 120, 50, 0.4); */
+    z-index: -1;
+}
+
+/* 📄 Left Content */
+.about .left {
+    width: 50%;
+    max-width: 600px;
+}
+
+.about .left h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.about .left h3 {
+    margin-top: 20px;
+    color: #fff;
+}
+
+.about .left p {
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+/* 🖼️ Right Image */
+.about .right {
+    position: relative;
+    width: 50%;
+    max-width: 500px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.about .right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+/* 💎 Floating Glass Card */
+.about-card {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 20px;
+    border-radius: 15px;
+
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+
+    color: white;
+}
+
+/* 🟡 Icon Circle */
+.about-card .icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: orange;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Artists section starts from here */
+
+.artists {
+    padding: 80px 60px;
+    background: #0b0f14;
+    color: white;
+    overflow: hidden;
+}
+
+.artists .section-title {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 50px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    position: relative;
+    z-index: 9999;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 10%;
+    height: 2px;
+    background: orange;
+    margin: 10px auto;
+}
+
+.artists-wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+}
+
+.left-artist,
+.artist {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: none;
+}
+
+.left-artist {}
+
+/* .left-artist img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 20px;
+    cursor: pointer;
+} */
+
+.left-artist img,
+.artist img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    will-change: transform;
+    transition: filter 0.5s ease;
+    filter: saturate(0.6) brightness(0.8);
+
+}
+
+.right-artists {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.right-artists img {
+    border-radius: 20px;
+    cursor: pointer;
+
+}
+
+
+/* ── Artist Info (hidden by default) ────── */
+.artist-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 28px;
+    z-index: 2;
+    transform: translateY(20px);
+    opacity: 0;
+    background-color: #1c1f206f;
+    transition: transform 0.5s ease, opacity 0.4s ease;
+}
+
+.left-artist:hover .artist-info,
+.artist:hover .artist-info {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+
+.artist-tag {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: orange;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 8px;
+}
+
+.artist-info h3 {
+    font-size: clamp(1.2rem, 2vw, 1.8rem);
+    font-weight: 600;
+    color: #f5f0e8;
+    line-height: 1.2;
+    margin-bottom: 6px;
+}
+
+.artist-info p {
+    font-size: 13px;
+    color: #DBD4B4;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
+}
+
+/* ── Shine effect ────────────────────────── */
+.artist-shine {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.08) 0%,
+            transparent 60%);
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.left-artist:hover .artist-shine,
+.artist:hover .artist-shine {
+    opacity: 1;
+}
+
+
+
+/* Plans section  */
+.plans {
+    padding: 80px 60px;
+    background: #1C1F20;
+    color: white;
+
+}
+
+.plans h2 {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 50px;
+
+    background: #FF512F;
+    background: linear-gradient(to right, #DD2476, #FF512F);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+
+
+.plans-wrapper {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.plans-wrapper .left,
+.plans-wrapper .right {
+    border: 5px solid #8f8476;
+    border-style: dotted;
+    min-height: 420px;
+    width: 100%;
+    max-width: 640px;
+    border-radius: 20px;
+    padding: 44px 38px 36px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: rgba(9, 12, 18, 0.75);
+}
+
+.plan-head {
+    max-width: 78%;
+}
+
+.plan-head h3 {
+    font-size: 42px;
+    line-height: 1.1;
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: #f5f5f5;
+}
+
+.plan-head h3 span {
+    font-size: 58px;
+    margin-left: 10px;
+}
+
+.plan-head p {
+    font-size: 17px;
+    color: #bab5ac;
+    opacity: 1;
+    line-height: 1.4;
+}
+
+.plan-points {
+    list-style: disc;
+    columns: 2;
+    column-gap: 48px;
+    padding-left: 22px;
+    color: #bab5ac;
+    font-size: 16px;
+    line-height: 1.45;
+    margin: 30px 0;
+}
+
+.plan-points li {
+    break-inside: avoid;
+    margin-bottom: 10px;
+}
+
+.plan-link {
+    color: #f1c232;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    width: fit-content;
+    border-bottom: 2px solid #f1c232;
+    padding-bottom: 6px;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.plan-link i {
+    margin-left: 12px;
+}
+
+.plan-link:hover {
+    color: #ffd657;
+    border-color: #ffd657;
+}
+
+.offer-badge {
+    position: absolute;
+    top: 26px;
+    right: 26px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: #cb4f00;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.offer-badge p {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.1;
+}
+
+.offer-badge h3 {
+    font-size: 50px;
+    line-height: 1;
+    margin-top: 6px;
+}
+
+
+/* ─────────────────────────────────────────
+   GALLERY SECTION
+───────────────────────────────────────── */
+
+.gallery-section {
+    background: #080810;
+    color: white;
+    overflow: hidden;
+}
+
+.gallery-intro {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 8vw;
+    position: relative;
+
+}
+
+.intro-top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 2rem;
+    /* overflow: hidden; */
+}
+
+.intro-tag {
+    font-size: 20px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: orange;
+    font-family: 'Courier New', monospace;
+}
+
+.intro-line {
+    display: block;
+    width: 60px;
+    height: 1px;
+    background: orange;
+    opacity: 0.5;
+}
+
+.intro-heading {
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #f5f0e8;
+    margin-bottom: 2rem;
+}
+
+.intro-heading em {
+    font-style: italic;
+    font-weight: 400;
+
+    /* Making it gradient text */
+    background: linear-gradient(90deg, orange, #ff6b35, #ffd700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+}
+
+.intro-sub {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    /* Responsive font size */
+    color: rgba(255, 255, 255, 0.45);
+    max-width: 480px;
+    line-height: 1.7;
+    margin-bottom: 4rem;
+}
+
+.intro-scroll-hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.intro-scroll-hint span {
+    display: block;
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, orange);
+    animation: scrollLine 1.5s ease-in-out infinite;
+}
+
+.intro-scroll-hint p {
+    font-size: 20px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.3);
+    font-family: 'Courier New', monospace;
+}
+
+
+/* Animation for the gallery section */
+@keyframes scrollLine {
+    0% {
+        transform: scaleY(0);
+        transform-origin: top;
+        opacity: 0;
+    }
+
+    50% {
+        transform: scaleY(1);
+        transform-origin: top;
+        opacity: 1;
+
+    }
+
+    100% {
+        transform: scaleY(0);
+        transform-origin: top;
+        opacity: 0;
+    }
+}
+
+/* Gallery Wrapper Section */
+
+.gallery-wrapper {
+    min-height: 100vh;
+}
+
+.gallery-wrapper {
+    min-height: 100vh;
+    overflow: hidden;
+    /* images bahar nahi jaayengi */
+}
+
+.gallery-img-wrapper {
+    display: flex;
+    gap: 20px;
+    flex-wrap: nowrap;
+    will-change: transform;
+    overflow: visible;
+}
+
+.gallery-img-wrapper img {
+    height: 80vh;
+    width: auto;
+    /* width auto rakho */
+    flex-shrink: 0;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.animation-text-section {
+    min-height: 100vh;
+}
+
+
+
+
+
+
+
+
+/* Aniamtion Text Section */
+
+.animation-text-section {
+    min-height: 100vh;
+    background: #080810;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0 6vw;
+    position: relative;
+}
+
+.anim-text-wrapper {
+    width: 100%;
+}
+
+/* Small text — left aligned */
+.anim-small-text {
+    font-size: clamp(1rem, 1vw, 1.4rem);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.45);
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+/* Big heading */
+.anim-big-text {
+    font-size: clamp(3rem, 6vw, 9rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    text-align: center;
+}
+
+.anim-big-text span {
+    display: inline-block;
+    background: linear-gradient(90deg, #fff 0%, orange 50%, #ffd700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* SVG animation css code */
+
+#blob {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 500px;
+    height: 500px;
+
+    pointer-events: none;
+    /* z-index: ; */
+}
+
+#blob svg {
+    width: 100%;
+    height: 100%;
+}
+
+#blob svg path {
+    fill: #ffd700;
+}
+
+
+
+/* ─────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────── */
+.footer {
+    position: relative;
+    background: #04040a;
+    color: white;
+    padding: 80px 6vw 40px;
+    overflow: hidden;
+}
+
+/* ── Top Section ──────────────────────── */
+.footer-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 4vw;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ── Brand ────────────────────────────── */
+.footer-brand {
+    flex: 1.5;
+}
+
+.footer-logo {
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    background: linear-gradient(135deg, #fff 30%, rgba(255, 165, 0, 0.6) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+    z-index: 1;
+}
+
+.footer-tagline {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.35);
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+/* ── Vertical Divider ─────────────────── */
+.footer-divider {
+    width: 1px;
+    height: 160px;
+    background: linear-gradient(to bottom,
+            transparent,
+            rgba(255, 165, 0, 0.3),
+            transparent);
+    align-self: center;
+}
+
+/* ── Nav ──────────────────────────────── */
+.footer-nav {
+    flex: 1;
+}
+
+.footer-nav-label {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: orange;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 20px;
+}
+
+.footer-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-nav-item {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    position: relative;
+    width: fit-content;
+    transition: color 0.3s ease;
+}
+
+.footer-nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: orange;
+    transition: width 0.3s ease;
+}
+
+.footer-nav-item:hover {
+    color: #fff;
+}
+
+.footer-nav-item:hover::after {
+    width: 100%;
+}
+
+/* ── Newsletter ───────────────────────── */
+.footer-newsletter {
+    flex: 1.5;
+}
+
+.newsletter-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin: 16px 0 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+}
+
+.newsletter-input-wrap:focus-within {
+    border-color: rgba(255, 165, 0, 0.4);
+}
+
+.newsletter-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 14px 16px;
+    color: white;
+    font-size: 14px;
+    font-family: 'Courier New', monospace;
+}
+
+.newsletter-input::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.newsletter-btn {
+    background: orange;
+    border: none;
+    padding: 14px 18px;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s ease;
+}
+
+.newsletter-btn:hover {
+    background: darkorange;
+}
+
+.newsletter-note {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.2);
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+}
+
+/* ── Bottom Section ───────────────────── */
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 32px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 16px;
+}
+
+.social-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    font-size: 14px;
+    transition: border-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icon:hover {
+    border-color: orange;
+    color: orange;
+    transform: translateY(-3px);
+}
+
+.footer-event-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.3);
+    font-family: 'Courier New', monospace;
+}
+
+.footer-event-info i {
+    color: orange;
+}
+
+.footer-dot {
+    color: rgba(255, 165, 0, 0.3);
+}
+
+.footer-copy {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.15);
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+}
+
+/* ── Ghost Background Text ────────────── */
+.footer-ghost-text {
+    position: absolute;
+    bottom: -0.1em;
+    right: -0.05em;
+    font-size: clamp(8rem, 22vw, 20rem);
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    color: rgba(255, 255, 255, 0.02);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+}
+
+
+
+/* Footer Logo Animated Image Code */
+#footer-logo-img {
+    position: absolute;
+    top: 50%;
+    left: 6vw;
+    transform: translate(0, -50%);
+    width: 300px;
+    height: 380px;
+    border-radius: 16px;
+    overflow: hidden;
+    opacity: 0;
+    scale: 0.8;
+    pointer-events: none;
+    z-index: 0;
+    /* text ke peeche */
+}
+
+#footer-logo-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* footer-brand ke andar text z-index upar rakho */
+.footer-brand {
+    position: relative;
+    z-index: 2;
+    /* image ke upar */
+    flex: 1.5;
+}

@@ -1,0 +1,353 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: #0a0a0a;
+  color: #f0ede6;
+  font-family: sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+#cursor {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  pointer-events: none;
+  will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  translate: -50% -50%;
+  /* ← fixes the 30px offset permanently */
+}
+
+#cursor p {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  /* hidden by default */
+  font-size: 20px;
+  /* ← slightly bigger, cleaner */
+  font-weight: 600;
+  /* ← bold so it's crisp */
+  line-height: 1;
+  color: #0a0a0a;
+  text-align: center;
+  pointer-events: none;
+  white-space: nowrap;
+  /* ← prevents text wrapping weirdly */
+  letter-spacing: 0.05em;
+}
+
+#navbar {
+  height: 70px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 48px;
+  z-index: 100;
+  border-bottom: 1px solid rgba(240, 237, 230, 0.07);
+  backdrop-filter: blur(12px);
+  background: rgba(10, 10, 10, 0.7);
+}
+
+.nav-logo {
+  font-family: "Syne", sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 0.12em;
+  color: #f0ede6;
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 13px;
+  font-weight: 300;
+  color: #f0ede6;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.nav-links a:after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: #c8f04d;
+  transition: width 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #f0ede6;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-cta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: #0a0a0a;
+  background-color: #c8f04d;
+  padding: 10px 22px;
+  border-radius: 100px;
+  text-decoration: none;
+}
+
+/* ── Hero ────────────────────────────────────── */
+#hero {
+  min-height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.hero-tag {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  text-transform: uppercase;
+  /* margin-bottom: 36px; */
+  opacity: 0;
+}
+
+.hero-title {
+  font-family: "Syne", sans-serif;
+  font-weight: 800;
+  font-size: clamp(52px, 9vw, 110px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #f0ede6;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  /* margin-bottom: 32px; */
+}
+
+.hero-title {
+  overflow: hidden;
+}
+
+.hero-title .line {
+  display: block;
+  overflow: hidden;
+}
+
+.hero-title .italic {
+  font-style: italic;
+  color: #c8f04d;
+  overflow: hidden;
+}
+
+.hero-sub {
+  font-size: 20px;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #c8f04d;
+  margin-bottom: 48px;
+  /* opacity: 0; */
+}
+
+/* ── Buttons ─────────────────────────────────── */
+.hero-btns {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  padding: 14px 32px;
+  border-radius: 100px;
+}
+
+.btn-primary {
+  background: #c8f04d;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #f0ede6;
+  border: 1px solid rgba(240, 237, 230, 0.2);
+}
+
+.hero-scroll-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border: 1px solid rgba(240, 237, 230, 0.24);
+  border-radius: 999px;
+  background: rgba(240, 237, 230, 0.04);
+  color: #f0ede6;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.hero-scroll-hint span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #c8f04d;
+  color: #0a0a0a;
+}
+
+.hero-scroll-hint i {
+  font-size: 11px;
+}
+
+/* ***** Image Gallery Section************************************************ */
+
+.image-gallery {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding-top: 50px;
+}
+
+.image-gallery h2 {
+  font-family: "Syne", sans-serif;
+  font-weight: 800;
+  font-size: 32px;
+  letter-spacing: -0.02em;
+  color: #f0ede6;
+}
+
+.gallery-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 90%;
+  gap: 20px;
+  padding: 40px 20px;
+}
+
+.gallery-wrapper .img-box {
+  height: 300px;
+  width: 300px;
+
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: none;
+}
+
+.gallery-wrapper .img-box img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: top;
+
+  filter: grayscale(100%);
+  transition: all 0.5s ease-in-out;
+}
+
+.gallery-wrapper .img-box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.gallery-wrapper .img-box:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.5);
+}
+
+.gallery-wrapper .img-box:hover::after {
+  opacity: 1;
+}
+
+
+/* Text Overlays */
+.img-box .img-text {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 2;
+  color: #f0ede6;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.5s ease-in-out;
+  transform: translateY(0);
+
+}
+
+.img-box:hover .img-text {
+  opacity: 1;
+  transform: translateY(0);
+
+}
+
+.img-text h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+.img-text p {
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #c8f04d;
+}

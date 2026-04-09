@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Keep page full-height and use a visible background */
+html,
+body {
+  height: 100%;
+  background-color: grey;
+  display: flex;
+  align-items: center;
+}
+
+.canvas{
+    height: 400px;
+    width: 100%;
+    background-color: #111;
+}
+
+svg{
+    /* background-color: yellowgreen; */
+
+}

@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GSAP ScrollTrigger</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/f12c1313f0.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="cursor">
+      <p id="cursor-text">View <br> Details</p>
+    </div>
+
+    <nav id="navbar">
+      <div class="nav-logo">STUDIO</div>
+      <ul class="nav-links">
+        <li><a href="#">Work</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Journal</a></li>
+      </ul>
+      <a href="#" id="nav-btn" class="nav-cta"
+        >Let's Talk <span><i class="fa-solid fa-arrow-right"></i></span
+      ></a>
+    </nav>
+
+    <!-- Hero Section -->
+
+    <section id="hero">
+      <div class="hero-tag">Creative Design Studio — Est. 2024</div>
+      <h1 class="hero-title">
+        <span id="text-1" class="line">We craft</span>
+        <span id="text-2" class="line italic">Digital</span>
+        <span id="text-3" class="line">experiences.</span>
+      </h1>
+
+      <p class="hero-sub">
+        Bold ideas. Clean execution. Interfaces that people<br />actually
+        remember.
+      </p>
+
+      <div class="hero-btns">
+        <a href="#" id="hero-btn1" class="btn btn-primary">View Our Work</a>
+        <a href="#" id="hero-btn2" class="btn btn-ghost">Start a Project ↗</a>
+      </div>
+
+      <div class="hero-scroll-hint">
+        scroll down <span><i class="fa-solid fa-arrow-down"></i></span>
+      </div>
+    </section>
+
+    <section class="image-gallery">
+      <h2>Our Collection</h2>
+      <div class="gallery-wrapper">
+        <div class="img-box">
+          <img
+            src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1400&q=80"
+            alt="River between rocks and trees"
+          />
+          <div class="img-text">
+            <h3>River Landscape</h3>
+            <p>Nature — 2024</p>
+          </div>
+        </div>
+        <div class="img-box">
+          <img
+            src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1400&q=80"
+            alt="Pine forest and mountain valley"
+          />
+          <div class="img-text">
+            <h3>River Landscape</h3>
+            <p>Nature — 2024</p>
+          </div>
+        </div>
+        <div class="img-box">
+          <img
+            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1400&q=80"
+            alt="Snowy mountain peak and hills"
+          />
+          <div class="img-text">
+            <h3>River Landscape</h3>
+            <p>Nature — 2024</p>
+          </div>
+        </div>
+        <div class="img-box">
+          <img
+            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1400&q=80"
+            alt="Portrait in natural outdoor light"
+          />
+          <div class="img-text">
+            <h3>River Landscape</h3>
+            <p>Nature — 2024</p>
+          </div>
+        </div>
+        <div class="img-box">
+          <img
+            src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1400&q=80"
+            alt="Close-up of flowers and plants"
+          />
+          <div class="img-text">
+            <h3>River Landscape</h3>
+            <p>Nature — 2024</p>
+          </div>
+        </div>
+        <div class="img-box">
+          <img
+            src="https://images.unsplash.com/photo-1439066615861-d1af74d74000?auto=format&fit=crop&w=1400&q=80"
+            alt="Calm lake with trees and sunset sky"
+          />
+          <div class="img-text">
+            <h3>River Landscape</h3>
+            <p>Nature — 2024</p>
+          </div>
+        </div>
+        <div class="img-box">
+          <img
+            src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1400&q=80"
+            alt="Wide river landscape with rocks"
+          />
+        </div>
+        <div class="img-box">
+          <img
+            src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1400&q=80"
+            alt="Forest path through mountain trees"
+          />
+          <div class="img-text">
+            <h3>River Landscape</h3>
+            <p>Nature — 2024</p>
+          </div>
+        </div>
+        <div class="img-box">
+          <img
+            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1400&q=80"
+            alt="Alpine summit under clear sky"
+          />
+          <div class="img-text">
+            <h3>River Landscape</h3>
+            <p>Nature — 2024</p>
+          </div>
+        </div>
+        <div class="img-box">
+          <img
+            src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1400&q=80"
+            alt="Colorful flower field close-up"
+          />
+          <div class="img-text">
+            <h3>River Landscape</h3>
+            <p>Nature — 2024</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Load GSAP first -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
+      integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"
+      integrity="sha512-P2IDYZfqSwjcSjX0BKeNhwRUH8zRPGlgcWl5n6gBLzdi4Y5/0O4zaXrtO4K9TZK6Hn1BenYpKowuCavNandERg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- Then run our timeline code -->
+
+    <script src="script.js"></script>
+  </body>
+</html>

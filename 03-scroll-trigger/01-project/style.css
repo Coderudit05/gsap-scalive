@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Keep page full-height and use a visible background */
+html,
+body {
+    height: 100%;
+    background-color: gray;
+    
+}
+
+#page1,
+#page2,
+#page3,
+#page4 {
+    height: 100%;
+    width: 100%;
+}
+
+section:nth-child(1) {
+    background-color: yellowgreen;
+}
+
+section:nth-child(2) {
+    background-color: rgb(66, 224, 229);
+    overflow: hidden;
+}
+
+section:nth-child(3) {
+    background-color: yellowgreen;
+}
+
+section:nth-child(4) {
+    background-color: rgb(205, 50, 179);
+}
+
+#page2 h1 {
+    font-size: 40vw;
+    white-space: nowrap;
+}
