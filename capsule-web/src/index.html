@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Capsules®</title>
+
+    <link rel="stylesheet" href="output.css" />
+    <!-- Google Fonts - Bebas Neue for headings, Inter for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="bg-[#181717] overflow-x-hidden">
+    <!-- Preloader -->
+    <div
+      id="preloader"
+      class="fixed inset-0 z-[999] overflow-hidden bg-[#181717] flex items-center justify-center"
+    >
+      <!-- Capsule shape container -->
+      <div
+        id="preloader-capsule"
+        class="relative w-[40rem] h-[12rem] rounded-full overflow-hidden"
+      >
+        <!-- Left half - light color -->
+        <div class="absolute inset-0 bg-[#f4efe7]"></div>
+
+        <!-- Dark fill - left se right aayega -->
+        <div
+          id="preloader-bar"
+          class="absolute inset-0 bg-[#2a2725] origin-left"
+        ></div>
+
+        <!-- Capsule ke andar text -->
+        <div
+          class="absolute inset-0 flex items-center justify-center z-10 mix-blend-difference"
+        >
+          <h1
+            id="preloader-logo-text"
+            class="text-[3.5rem] font-semibold text-[#f4efe7] tracking-tight"
+          >
+            Capsule
+          </h1>
+        </div>
+      </div>
+
+      <!-- Footer text -->
+      <div
+        id="preloader-footer"
+        class="absolute bottom-16 left-1/2 -translate-x-1/2 w-[30%] text-center"
+      >
+        <p class="text-[#f4efe7] text-sm opacity-50">
+          Meet Capsules®—modern and cozy<br />
+          houses, in the California desert.
+        </p>
+      </div>
+    </div>
+
+    <!-- Navbar -->
+
+    <nav id="navbar" class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
+      <div
+        class="flex items-center justify-between gap-2 bg-[#f4efe7] rounded-full px-1 py-1"
+      >
+        <!-- Menu Text -->
+        <span class="text-[#2a2725] text-[12px] pl-3">Menu</span>
+        <button id="menu-btn" class="bg-[#2a2725] rounded-full p-2 cursor-pointer">
+          <!-- SVG hamburger icon - react-icons ki jagah free SVG use kar rahe hain -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#b1a696"
+            stroke-width="2"
+          >
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+
+    <main>
+      <!-- 1. HERO -->
+      <section id="hero"></section>
+
+      <!-- 2. WELCOME -->
+      <section id="welcome"></section>
+
+      <!-- 3. CHOOSE -->
+      <section id="choose"></section>
+
+      <!-- 4. GALLERY -->
+      <section id="gallery"></section>
+
+      <!-- 5. MAP LINK -->
+      <section id="maplink"></section>
+
+      <!-- 6. MARQUEE + STICKY COLS -->
+      <section id="marquee-sticky"></section>
+
+      <!-- 7. ACTIVITIES -->
+      <section id="activities"></section>
+
+      <!-- 8. SHOWCASE -->
+      <section id="showcase"></section>
+
+      <!-- 9. FEEDBACK -->
+      <section id="feedback"></section>
+
+      <!-- 10. FOOTER BANNER -->
+      <section id="footer-banner"></section>
+
+      <!-- 11. FOOTER -->
+      <footer id="footer"></footer>
+
+      <!-- 12. FOOTER TITLE -->
+      <div id="footer-title"></div>
+    </main>
+
+    <script src="https://unpkg.com/lenis@1.3.21/dist/lenis.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
+      integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"
+      integrity="sha512-P2IDYZfqSwjcSjX0BKeNhwRUH8zRPGlgcWl5n6gBLzdi4Y5/0O4zaXrtO4K9TZK6Hn1BenYpKowuCavNandERg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script src="./js/main.js"></script>
+  </body>
+</html>

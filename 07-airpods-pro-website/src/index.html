@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="output.css" />
+  <link rel="stylesheet" href="cursor.css" />
+</head>
+
+<body class="bg-black">
+  <!-- Custom Cursor — SABSE PEHLE -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+  <div id="cursor-text"></div>
+
+  <header id="header">
+    <!-- Navbar 1: Apple top bar -->
+    <nav id="apple-nav" class="w-full bg-black/80 backdrop-blur-md">
+      <div class="max-w-[980px] mx-auto px-4 flex justify-between items-center h-11">
+        <!-- Left: Apple Logo -->
+        <a href="#" class="text-[#d5d5d5] hover:text-white">
+          <ion-icon name="logo-apple" class="text-[18px]"></ion-icon>
+        </a>
+
+        <ul class="hidden lg:flex items-center gap-6">
+          <li>
+            <a href="#" class="text-[#d5d5d5] hover:text-white text-xs">Store</a>
+          </li>
+          <li>
+            <a href="#" class="text-[#d5d5d5] hover:text-white text-xs">Mac</a>
+          </li>
+          <li>
+            <a href="#" class="text-[#d5d5d5] hover:text-white text-xs">iPad</a>
+          </li>
+          <li>
+            <a href="#" class="text-[#d5d5d5] hover:text-white text-xs">iPhone</a>
+          </li>
+          <li>
+            <a href="#" class="text-[#d5d5d5] hover:text-white text-xs">Watch</a>
+          </li>
+          <li>
+            <a href="#" class="text-[#d5d5d5] hover:text-white text-xs">AirPods</a>
+          </li>
+          <li>
+            <a href="#" class="text-[#d5d5d5] hover:text-white text-xs">TV & Home</a>
+          </li>
+          <li>
+            <a href="#" class="text-[#d5d5d5] hover:text-white text-xs">Support</a>
+          </li>
+        </ul>
+
+        <div class="flex items-center gap-4">
+          <a href="#" class="text-[#d5d5d5] hover:text-white">
+            <ion-icon name="search-outline" class="text-[18px]"></ion-icon>
+          </a>
+          <a href="#" class="text-[#d5d5d5] hover:text-white">
+            <ion-icon name="bag-outline" class="text-[18px]"></ion-icon>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Navbar 2: AirPods sticky bar -->
+    <nav id="airpods-nav" class="w-full border-b border-white/20">
+      <div class="max-w-[980px] mx-auto px-4 flex justify-between items-center py-3">
+        <!-- Logo -->
+        <div class="text-white font-semibold text-xl">
+          <a href="#">AirPods Pro</a>
+        </div>
+
+        <!-- Nav Buttons: hidden on mobile -->
+
+        <ul class="hidden md:flex items-center gap-6">
+          <li>
+            <button disabled class="text-[#bebebe] text-xs cursor-default">
+              Overview
+            </button>
+          </li>
+          <li>
+            <button class="text-white text-xs hover:text-[#2997ff] transition-colors">
+              Tech Specs
+            </button>
+          </li>
+          <li>
+            <button class="text-white text-xs hover:text-[#2997ff] transition-colors">
+              Compare
+            </button>
+          </li>
+          <li>
+            <button class="text-white text-xs px-3 py-1 bg-[#147ce5] rounded-full hover:bg-[#0071e3] transition-colors">
+              Buy
+            </button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Section 1: Hero Canvas -->
+    <section id="hero" class="relative w-full h-screen overflow-hidden bg-black">
+      <!-- Canvas -->
+      <div class="absolute inset-0 flex justify-center items-center">
+        <canvas id="hero-canvas" class=""></canvas>
+      </div>
+
+      <!-- Main Text -->
+      <div id="hero-text" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-10">
+        <h1 class="text-white font-bold text-[80px] md:text-[120px] lg:text-[150px] leading-none whitespace-nowrap">
+          AirPods Pro
+        </h1>
+        <a href="#"
+          class="text-white font-bold text-lg md:text-2xl mt-4 text-center flex justify-center items-center gap-2 hover:underline">Watch
+          <span class="italic">Jump</span>
+          <ion-icon name="play-circle-outline"></ion-icon>
+        </a>
+      </div>
+
+      <!-- Message 1 -->
+      <div id="msg-1" class="absolute top-1/2 left-1/2 -translate-x-1/2 text-center z-10 opacity-0">
+        <p class="text-white font-bold text-[36px] md:text-[52px] lg:text-[64px] leading-tight">
+          Active Noise Cancellation <br />
+          for immersive sound.
+        </p>
+      </div>
+
+      <!-- Message 2 -->
+      <div id="msg-2" class="absolute top-1/2 left-1/2 -translate-x-1/2 text-center z-10 opacity-0">
+        <p class="text-white font-bold text-[36px] md:text-[52px] lg:text-[64px] leading-tight">
+          Transparency mode for hearing <br />
+          what's happening around you.
+        </p>
+      </div>
+
+      <!-- Message 3 -->
+      <div id="msg-3" class="absolute top-1/2 left-1/2 -translate-x-1/2 text-center z-10 opacity-0">
+        <p class="text-white font-bold text-[36px] md:text-[52px] lg:text-[64px] leading-tight">
+          A customisable fit <br />
+          for all-day comfort.
+        </p>
+      </div>
+
+      <!-- Message 4 -->
+      <div id="msg-4" class="absolute top-1/2 left-1/2 -translate-x-1/2 text-center z-10 opacity-0">
+        <p class="text-white font-bold text-[48px] md:text-[64px] lg:text-[80px] leading-tight">
+          Magic like you've never heard.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 2: Comfort Head Bob -->
+    <section id="comfort" class="relative w-full h-screen overflow-hidden bg-black">
+      <div class="absolute inset-0 flex justify-center items-center">
+        <canvas id="comfort-canvas" class="w-full"></canvas>
+      </div>
+
+      <!-- Text 1 -->
+      <div id="comfort-text"
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-10 opacity-0">
+        <small class="text-white text-lg font-semibold tracking-widest uppercase">Comfort</small>
+        <h2 class="text-white font-bold text-[48px] md:text-[72px] lg:text-[96px] leading-none whitespace-nowrap mt-2">
+          Arrival of the fittest.
+        </h2>
+      </div>
+
+      <!-- Text 2 -->
+      <div id="comfort-msg-1"
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-10 opacity-0">
+        <p class="text-white font-bold text-[32px] md:text-[48px] lg:text-[64px] leading-tight">
+          Engineered for your ears.
+        </p>
+      </div>
+
+      <!-- Text 3 -->
+      <div id="comfort-msg-2"
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-10 opacity-0">
+        <p class="text-white font-bold text-[32px] md:text-[48px] lg:text-[64px] leading-tight">
+          Wear them all day. <br />
+          Feel nothing.
+        </p>
+      </div>
+
+      <!-- Text 4 -->
+      <div id="comfort-msg-3"
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-10 opacity-0">
+        <p class="text-white font-bold text-[32px] md:text-[48px] lg:text-[64px] leading-tight">
+          Three sizes. <br />
+          One perfect fit.
+        </p>
+      </div>
+
+      <!-- Text 5 -->
+      <div id="comfort-msg-4"
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-10 opacity-0">
+        <p class="text-white font-bold text-[32px] md:text-[48px] lg:text-[64px] leading-tight">
+          Sound so immersive. <br />
+          World disappears.
+        </p>
+      </div>
+
+      <!-- Text 6 -->
+      <div id="comfort-msg-5"
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-10 opacity-0">
+        <p class="text-white font-bold text-[32px] md:text-[48px] lg:text-[64px] leading-tight">
+          Built different. <br />
+          Feels different.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 3: Ear Tips -->
+    <section id="eartips" class="w-full bg-black py-24 overflow-hidden">
+      <!-- Cards -->
+      <div id="eartip-card-wrapper"
+        class="flex flex-col justify-center items-stretch gap-6 px-20 max-w-[1200px] mx-auto">
+        <!-- Card 1 -->
+        <div id="eartip-card1" class="relative flex-1 rounded-3xl overflow-hidden group">
+          <img
+            src="https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/04-explode-tips/0000.jpg"
+            alt="Ear Tips" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+          <div class="absolute bottom-20 left-0 text-white max-w-xl">
+            <p class="text-white capitalize text-2xl px-20 font-semibold leading-snug">
+              We refined the details of comfort, creating a new class of
+              in-ear headphones with a customisable fit that forms an
+              exceptional seal for Active Noise Cancellation. You'll feel your
+              music, not your headphones.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div id="eartip-card2" class="relative flex-1 rounded-3xl overflow-hidden group">
+          <img
+            src="https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/04-explode-tips/0080.jpg"
+            alt="Ear Tips" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+          <div class="absolute bottom-20 left-30 text-white max-w-2xl">
+            <p class="text-white capitalize text-2xl px-20 font-semibold leading-snug">
+              Choose from three sizes of soft, flexible silicone tips that
+              click into place. Find the best fit — and get the best sound —
+              by using the Ear Tip Fit Test.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div id="eartip-card3" class="relative flex-1 rounded-3xl overflow-hidden group">
+          <img
+            src="https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/04-explode-tips/0138.jpg"
+            alt="Ear Tips" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+          <div class="absolute bottom-20 left-30 text-white max-w-xl">
+            <p class="text-white capitalize text-2xl px-10 font-semibold leading-snug">
+              We refined the details of comfort, creating a new class of
+              in-ear headphones with a customisable fit that forms an
+              exceptional seal for Active Noise Cancellation. You'll feel your
+              music, not your headphones.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Noise Cancellation -->
+    <section id="noise" class="w-full bg-black py-24 flex flex-col gap-10">
+      <div class="relative w-full max-w-[1200px] mx-auto px-6 mb-8">
+        <img
+          src="https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/05-flip-for-nc/0026.jpg"
+          alt="Active Noise Cancellation"
+          class="w-full h-[60vh] object-cover group-hover:scale-105 transition-transform duration-700" />
+
+        <div class="absolute bottom-10 left-10 right-10 text-center">
+          <p class="text-[#6e6e73] text-sm font-semibold tracking-widest uppercase mb-3">
+            Active Noise Cancellation
+          </p>
+          <h2 class="text-white font-bold text-[36px] md:text-[56px] lg:text-[72px] leading-none">
+            Sound that cuts <br />
+            out the noise.
+          </h2>
+        </div>
+      </div>
+      <div class="relative w-full max-w-[1200px] mx-auto px-6 mb-8 flex flex-col items-center mt-10">
+        <img src="./assets/earpods-img.png" alt="Noise Cancellation"
+          class="w-1/2 h-1/2 object-cover group-hover:scale-105 transition-transform duration-700" />
+        <div id="noise-text" class="text-center">
+          <p class="text-[#6e6e73] text-sm font-semibold tracking-widest uppercase mt-10">
+            Active Noise Cancellation
+          </p>
+          <h2 id="noise-cancellation-text"
+            class="text-white font-bold text-[20px] md:text-[26px] lg:text-[52px] leading-none uppercase py-10">
+            AirPods Pro are the only in-ear headphones with Active Noise
+            Cancellation that continuously adapts to the geometry of your ear
+            and the fit of the ear tips — blocking out the world so you can
+            focus on what you're listening to.
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: SVG Sound Wave -->
+    <section id="svg-section" class="w-full bg-black py-32 overflow-hidden">
+
+      <!-- Heading -->
+      <div id="svg-heading" class="text-center mb-20 px-4">
+        <small class="text-[#6e6e73] text-sm font-semibold tracking-widest uppercase">
+          Experience
+        </small>
+        <h2 class="text-white font-bold text-[40px] md:text-[60px] lg:text-[80px] leading-none mt-3">
+          Feel the Sound.
+        </h2>
+        <p class="text-[#6e6e73] text-base md:text-lg mt-4 max-w-xl mx-auto">
+          Move your cursor through the waves — feel the music come alive.
+        </p>
+      </div>
+
+      <!-- SVG Lines -->
+      <div id="svg-canvas" class="w-full relative" style="height: 400px;">
+        <svg id="svg" width="100%" height="400">
+
+          <!-- Line 1 — Subtle above -->
+          <path id="svg-path-2" d="M 20 150 Q 600 150 1500 150" stroke="rgba(255,255,255,0.2)" stroke-width="1"
+            fill="transparent"></path>
+
+          <!-- Line 2 — Main interactive -->
+          <path id="svg-path-1" d="M 20 200 Q 600 200 1500 200" stroke="white" stroke-width="2" fill="transparent">
+          </path>
+
+
+          <!-- Line 3 — Subtle below -->
+          <path id="svg-path-3" d="M 20 250 Q 600 250 1500 250" stroke="rgba(255,255,255,0.2)" stroke-width="1"
+            fill="transparent"></path>
+
+          <!-- Dot on main line -->
+          <circle id="svg-dot" cx="600" cy="200" r="4" fill="white"></circle>
+
+        </svg>
+      </div>
+
+      <!-- Bottom Text -->
+      <div class="text-center mt-20 px-4">
+        <p class="text-[#6e6e73] text-sm tracking-widest uppercase font-medium">
+          Drag across to interact
+        </p>
+      </div>
+
+    </section>
+
+    <!-- Section 7: Transparency -->
+    <section id="transparency" class="w-full bg-black py-24">
+      <div class="relative w-full max-w-[1200px] mx-auto px-6">
+        <div class="relative rounded-3xl overflow-hidden group">
+          <!-- Image -->
+          <img src="./assets/transparency-img-airpods.jpg" alt="Transparency Mode"
+            class="w-full h-[80vh] object-cover group-hover:scale-105 transition-transform duration-700" />
+
+          <!-- Text -->
+          <div class="absolute top-1/2 -translate-y-1/2 left-10 md:left-16 max-w-[420px]">
+            <p class="text-[#6e6e73] text-sm font-semibold tracking-widest uppercase mb-4">
+              Transparency Mode
+            </p>
+            <p class="text-white text-lg md:text-xl font-semibold leading-snug mb-6">
+              Just press and hold the force sensor to move between Active
+              Noise Cancellation and Transparency mode — letting outside sound
+              in naturally.
+            </p>
+            <p class="text-white text-lg md:text-xl font-semibold leading-snug">
+              Conversation Boost helps you hear more clearly by focusing on
+              the sound of the person directly in front of you.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="w-full bg-[#f5f5f7] py-10">
+    <div class="max-w-[980px] mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+      <small class="text-[#6e6e73] text-xs">Copyright © 2024 Apple Inc. All rights reserved.</small>
+      <small class="text-[#6e6e73] text-xs">India.</small>
+    </div>
+  </footer>
+
+  <!-- Ionicons -->
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+  <!-- GSAP + ScrollTrigger -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+
+  <!-- js  file linked -->
+  <script src="js/script.js"></script>
+</body>
+
+</html>
